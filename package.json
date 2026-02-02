@@ -1,0 +1,17 @@
+{
+  "name": "teste-cesar",
+  "version": "1.0.0",
+  "description": "Chat WebSocket - Aplicação React com TypeScript",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run frontend\"",
+    "server": "node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "install:all": "npm install && cd frontend && npm install"
+  },
+  "dependencies": {
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
