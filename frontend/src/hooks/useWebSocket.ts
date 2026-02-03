@@ -38,8 +38,8 @@ export function useWebSocket({
   const connect = useCallback(() => {
     // Evita conexões duplas: verifica se já existe uma conexão ativa
     if (
-      wsRef.current?.readyState === WebSocket.OPEN ||
-      wsRef.current?.readyState === WebSocket.CONNECTING
+      wsRef.current?.readyState === 0 ||
+      wsRef.current?.readyState === 1
     ) {
       return
     }
@@ -157,7 +157,9 @@ export function useWebSocket({
 
     // Limpa a conexão quando o componente desmonta
     return () => {
-      disconnect()
+      if (wsRef.current?.readyState === 1) {
+        disconnect()
+      }
     }
   }, [connect, disconnect])
 
