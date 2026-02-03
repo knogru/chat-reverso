@@ -14,7 +14,7 @@ interface UseWebSocketReturn {
   messages: Message[]
   isConnected: boolean
   isLoading: boolean
-  sendMessage: (text: string) => void
+  sendMessage: (text: string) => boolean
   clearMessages: () => void
   reconnect: () => void
 }
@@ -157,7 +157,8 @@ export function useWebSocket({
 
     // Limpa a conexão quando o componente desmonta
     return () => {
-      if (wsRef.current?.readyState === 1) {
+      console.log(wsRef.current)
+      if (wsRef.current?.readyState === WebSocket.OPEN ) {
         disconnect()
       }
     }

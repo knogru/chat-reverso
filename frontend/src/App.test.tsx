@@ -411,8 +411,13 @@ describe('App Component', () => {
       global.WebSocket = MockWebSocket as unknown as typeof WebSocket
     })
 
-    it('deve fechar conexão ao desmontar componente', () => {
+    it('deve fechar conexão ao desmontar componente', async () => {
       const { unmount } = render(<App />)
+      
+      await waitFor(() => {
+        expect(screen.getByText('Online')).toBeInTheDocument()
+      })
+
       const wsInstance = getLastInstance()
       const closeSpy = vi.spyOn(wsInstance, 'close')
 
