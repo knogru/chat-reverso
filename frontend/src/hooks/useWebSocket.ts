@@ -157,7 +157,6 @@ export function useWebSocket({
 
     // Limpa a conexão quando o componente desmonta
     return () => {
-      console.log(wsRef.current)
       if (wsRef.current?.readyState === WebSocket.OPEN ) {
         disconnect()
       }
